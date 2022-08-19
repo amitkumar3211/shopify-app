@@ -11,7 +11,7 @@ import { setupGDPRWebHooks } from "./gdpr.js";
 import productCreator from "./helpers/product-creator.js";
 import { BillingInterval } from "./helpers/ensure-billing.js";
 import { AppInstallations } from "./app_installations.js";
-
+import { storeCallback, loadCallback, deleteCallback } from './db/ouths.js';
 const USE_ONLINE_TOKENS = false;
 const TOP_LEVEL_OAUTH_COOKIE = "shopify_top_level_oauth";
 
@@ -32,7 +32,14 @@ Shopify.Context.initialize({
   API_VERSION: LATEST_API_VERSION,
   IS_EMBEDDED_APP: true,
   // This should be replaced with your preferred storage strategy
-  SESSION_STORAGE: new Shopify.Session.SQLiteSessionStorage(DB_PATH),
+ //SESSION_STORAGE: new Shopify.Session.SQLiteSessionStorage(DB_PATH),
+ SESSION_STORAGE: new Shopify.Session.CustomSessionStorage(
+  storeCallback,
+  loadCallback,
+  deleteCallback
+
+ )
+
 });
 
 Shopify.Webhooks.Registry.addHandler("APP_UNINSTALLED", {
