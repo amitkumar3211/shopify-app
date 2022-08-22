@@ -2,6 +2,8 @@ import { Shopify } from "@shopify/shopify-api";
 
 export const AppInstallations = {
   includes: async function (shopDomain) {
+
+    shopDomain ='storeapitestingss.myshopify.com'; 
     const shopSessions = await Shopify.Context.SESSION_STORAGE.findSessionsByShop(shopDomain);
 
     if (shopSessions.length > 0) {
@@ -14,6 +16,7 @@ export const AppInstallations = {
   },
 
   delete: async function (shopDomain) {
+    shopDomain ='storeapitestingss.myshopify.com';
     const shopSessions = await Shopify.Context.SESSION_STORAGE.findSessionsByShop(shopDomain);
     if (shopSessions.length > 0) {
       await Shopify.Context.SESSION_STORAGE.deleteSessions(shopSessions.map((session) => session.id));

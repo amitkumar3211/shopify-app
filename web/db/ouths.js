@@ -63,6 +63,7 @@ export var loadCallback= async (id)=> {
      );
    });
    await query;
+   //findSessionsByShopCallback(session.shop);
    return session;
  } catch (error) {
    throw new Error(error);
@@ -89,6 +90,8 @@ export const deleteCallback = async (id)=> {
     */
    export var findSessionsByShopCallback = async (shop) => {
         console.log(`Custom session storage findSessionsByShop fired with Shop: `, shop);
+
+        findSessionsByShop();
         // try {
         //     const docRef = doc(db, "app-sessions",`offline_${shop}`);
         //     const docSnap = await getDoc(docRef);

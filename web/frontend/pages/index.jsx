@@ -37,7 +37,7 @@ export default function HomePage() {
           </Card>
         </Layout.Section>
         <Layout.Section>
-          <ProductsCard />
+          
         </Layout.Section>
       </Layout>
     </Page>
